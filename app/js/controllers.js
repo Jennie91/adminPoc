@@ -61,7 +61,7 @@ angular.module('myApp.controllers', [])
         */
   }])
 
-.controller('dashboardCtrlAPI', ['$scope','$rootScope','$location', '$routeParams','API', function($rootScope, $scope, API) {
+.controller('dashboardCtrlAPI', ['$scope','$rootScope','$location', '$routeParams','API', function($rootScope, $scope, $location, $routeParams, API) {
     API.getDashboard()
         .success(function (data, status, headers, config) {
           /* alert(data);
@@ -72,20 +72,14 @@ angular.module('myApp.controllers', [])
         .error(function (data, status, headers, config) {
             alert(data + " Error");
         });
-        $scope.show = function(item, $location, $routeParams){
-            if(view === 'instance'){
-                $location.url('/dashboard'+item.url+'/')
-            }
-           alert(view);
-        }
-}])
-
-.controller('instanceGroupCtrl', ['$scope', '$routeParams',
-    function($scope, $routeParams) {
+        $scope.show = function(item){
+            $location.path('/dashboard'+item.url);
+        };
         $scope.instanceGroup = $routeParams.instanceGroup;
-        $scope.name = 'instanceGroupCtrl';
+        $scope.name = 'dashboardCtrlAPI';
         $scope.params = $routeParams;
 }])
+
 
 .controller('instanceIdCtrl', ['$scope', '$routeParams',
     function($scope, $routeParams) {
@@ -93,7 +87,3 @@ angular.module('myApp.controllers', [])
         $scope.name = 'instanceIdCtrl';
         $scope.params = $routeParams;
 }])
-    .controller('ExampleController', ['$scope', function($scope) {
-        $scope.items = ['settings', 'home', 'other'];
-        $scope.selection = $scope.items[0];
-    }])

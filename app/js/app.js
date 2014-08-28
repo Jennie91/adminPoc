@@ -24,7 +24,7 @@ config(['$routeProvider', function($routeProvider) {
 $routeProvider.
       when('/dashboard/:instanceGroup', {
           templateUrl: 'partials/partial-instanceGroup.html',
-          controller: 'instanceGroupCtrl',
+          controller: 'dashboardCtrlAPI',
           controllerAs: 'instanceGr'
       });
 $routeProvider.
