@@ -15,22 +15,16 @@ config(['$routeProvider', function($routeProvider) {
           templateUrl: 'partials/partial-dashboardView.html',
           controller: 'dashboardCtrlAPI'
       });
-  /*$routeProvider.
+$routeProvider.
       when('/dashboard/:listId', {
           templateUrl: 'partials/partial-listView.html',
-          controller: 'listIdCtrl',
-          controllerAs: 'list'
-      });*/
-$routeProvider.
-      when('/dashboard/:instanceGroup', {
-          templateUrl: 'partials/partial-instanceGroup.html',
           controller: 'dashboardCtrlAPI',
-          controllerAs: 'instanceGr'
+          controllerAs: 'instance'
       });
 $routeProvider.
        when('/dashboard/:instanceGroup/:instanceId', {
             templateUrl: 'partials/partial-instanceView.html',
-            controller: 'instanceIdCtrl',
+            controller: 'dashboardCtrlAPI',
             controllerAs: 'instance'
        });
   $routeProvider.

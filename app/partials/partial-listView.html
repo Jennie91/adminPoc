@@ -1,1 +1,13 @@
-<p>TBD: detail list view for <span>{{list.params.title}}</span></p>
+<p>This is the listView page {{name}}</p>
+
+        <table >
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Value</th>
+            </thead>
+            <tr ng-repeat="(k,v) in dataHolder">
+                <td>  {{v.name}}</td>
+                <td>  {{v.attr}}</td>
+            </tr>
+        </table>

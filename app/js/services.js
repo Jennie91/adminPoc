@@ -11,7 +11,6 @@ angular.module('myApp.services', [])
                     method: 'GET'
                 });
                 return dashboard
-
             }
         }
 });

@@ -1,4 +1,6 @@
-<div ng-controller="dashboardCtrlAPI as main">
-<p>TBD: detail instance view for <span>{{instanceGroup}}</span></p>
+<p>This is the instanceView page {{name}}</p>
+<!--<div ng-repeat="item in dashboardItems[id]" class="groupInstance" ng-click="showItemDetails(item)">-->
+    <div ng-repeat="(k,v) in dataHolder" class="groupInstance {{v.status}}">{{v.name}}: {{v.status}}</div>
 
-</div>
+    </hr>
+<!--</div>-->

@@ -3,64 +3,6 @@
 /* Controllers */
 
 angular.module('myApp.controllers', [])
-  .controller('dashboardCtrl', ['$scope','$rootScope','API', function($rootScope, $scope) {
-       /* $scope.dashboardItem = [{
-            "id": 1,
-            "title": "Trading Station",
-            "type": "normal-box",
-            "order": "1",
-            "url": "/tradingStation"
-        }, {
-            "id": 2,
-            "title": "Jarl",
-            "type": "normal-box",
-            "order": "2",
-            "url": "/jarl"
-        }, {
-            "id": 3,
-            "title": "Risk",
-            "type": "normal-box",
-            "order": "3",
-            "url": "/risk"
-        }, {
-            "id": 4,
-            "title": "Counterparties",
-            "type": "normal-box",
-            "order": "4",
-            "url": "/cpty"
-        }, {
-            "id": 5,
-            "title": "Users",
-            "type": "normal-box",
-            "order": "5",
-            "url": "/user"
-        }, {
-            "id": 6,
-            "title": "Prices",
-            "type": "graph-box",
-            "order": "6",
-            "url": "/price"
-        }, {
-            "id": 7,
-            "title": "Currencies",
-            "type": "normal-box",
-            "order": "7",
-            "url": "/currencies"
-        }, {
-            "id": 8,
-            "title": "Settings",
-            "type": "normal-box",
-            "order": "8",
-            "url": "/settings"
-        }];
-        $scope.rectangles = [
-            new Rectangle(200, 200, "blue"),
-            new Rectangle(500, 900, "black")
-
-        ];
-        */
-  }])
-
 .controller('dashboardCtrlAPI', ['$scope','$rootScope','$location', '$routeParams','API', function($rootScope, $scope, $location, $routeParams, API) {
     API.getDashboard()
         .success(function (data, status, headers, config) {
@@ -72,18 +14,40 @@ angular.module('myApp.controllers', [])
         .error(function (data, status, headers, config) {
             alert(data + " Error");
         });
-        $scope.show = function(item){
-            $location.path('/dashboard'+item.url);
-        };
-        $scope.instanceGroup = $routeParams.instanceGroup;
-        $scope.name = 'dashboardCtrlAPI';
-        $scope.params = $routeParams;
+    $scope.show = function(item, id){
+           //redirects to instanceGroup.html
+
+
+
+        $scope.dataItems = item;
+        $scope.dataHolder = [];
+            angular.forEach(item.data, function(key, value){
+                $scope.dataHolder.push(key);
+            })
+
+           if(item.view === 'instance') {
+               $location.path('/dashboard' + item.url + '/' + item.view);
+               $scope.instanceId = $routeParams.instanceId;
+               $scope.id = id;
+               $scope.name = item.title;
+               $scope.data = item.data;
+           }
+           //redirects to listView.html
+           if(item.view === 'list') {
+               $location.path('/dashboard' + item.url + '/');
+               $scope.listId = $routeParams.listId;
+               $scope.id = id;
+               $scope.name = item.title;
+               $scope.data = item.data;
+           }
+       };
+    $scope.showSelectedItem = function(item){
+        //show selected item on detailed page
+
+    }
+    $scope.showItemDetails = function(item){
+        //show selected item
+    }
 }])
 
 
-.controller('instanceIdCtrl', ['$scope', '$routeParams',
-    function($scope, $routeParams) {
-        $scope.listId = $routeParams.listId;
-        $scope.name = 'instanceIdCtrl';
-        $scope.params = $routeParams;
-}])
